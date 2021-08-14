@@ -8,3 +8,5 @@
 .externalNativeBuild
 .cxx
 /drawer/release
+src/com/huawei/leetcode/editor/cn/all.json
+src/com/huawei/leetcode/editor/cn/translation.json

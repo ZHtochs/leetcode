@@ -74,7 +74,7 @@ public class ZhongJianErChaShuLcof {
             node.right = recur(root + i - left + 1, i + 1, right); // 开启右子树递归
             return node;                                           // 回溯返回根节点
         }
-     }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
