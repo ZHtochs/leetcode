@@ -10,3 +10,5 @@
 /drawer/release
 src/com/huawei/leetcode/editor/cn/all.json
 src/com/huawei/leetcode/editor/cn/translation.json
+src/com/huawei/leetcode/editor/cn/doc/all.json
+src/com/huawei/leetcode/editor/cn/doc/translation.json
