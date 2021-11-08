@@ -17,6 +17,15 @@ public class TreeNode {
         val = x;
     }
 
+    @Override
+    public String toString() {
+        return "TreeNode{" +
+                "val=" + val +
+                ", left=" + left +
+                ", right=" + right +
+                '}';
+    }
+
     public static TreeNode createTreeNode(int... ints) {
         TreeNode[] treeNodes = new TreeNode[ints.length];
         for (int i = 0; i < treeNodes.length; i++) {
