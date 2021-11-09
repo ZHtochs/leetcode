@@ -29,9 +29,16 @@ public class TreeNode {
     public static TreeNode createTreeNode(int... ints) {
         TreeNode[] treeNodes = new TreeNode[ints.length];
         for (int i = 0; i < treeNodes.length; i++) {
-            treeNodes[i] = new TreeNode(ints[i]);
+            if (ints[i] == Integer.MIN_VALUE) {
+                treeNodes[i] = null;
+            } else {
+                treeNodes[i] = new TreeNode(ints[i]);
+            }
         }
         for (int i = 0; i < treeNodes.length; i++) {
+            if (treeNodes[i] == null) {
+                continue;
+            }
             treeNodes[i].left = 2 * i + 1 < treeNodes.length ? treeNodes[2 * i + 1] : null;
             treeNodes[i].right = 2 * i + 2 < treeNodes.length ? treeNodes[2 * i + 2] : null;
         }
@@ -46,7 +53,7 @@ public class TreeNode {
         LinkedList<TreeNode> linkedList = new LinkedList<>();
         linkedList.offer(treeNode);
         while (true) {
-            if (linkedList.isEmpty()){
+            if (linkedList.isEmpty()) {
                 break;
             }
             int size = linkedList.size();
