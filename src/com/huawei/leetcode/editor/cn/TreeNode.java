@@ -1,7 +1,10 @@
 package com.huawei.leetcode.editor.cn;
 
+import java.awt.desktop.PrintFilesEvent;
 import java.nio.IntBuffer;
 import java.util.LinkedList;
+import java.util.function.ToIntFunction;
+import java.util.stream.Stream;
 
 /**
  * @program: offer
@@ -47,6 +50,21 @@ public class TreeNode {
 
     public static TreeNode createTreeNode() {
         return createTreeNode(1, 2, 3, 4, 5, 6, 7);
+    }
+
+    public static TreeNode createTreeNode(String string) {
+        String[] strings = string.split(",");
+        int[] integers = Stream.of(strings).mapToInt(new ToIntFunction<String>() {
+            @Override
+            public int applyAsInt(String s) {
+                if (s.equals("null") || s.equals("NULL")) {
+                    return Integer.MIN_VALUE;
+                } else {
+                    return Integer.parseInt(s);
+                }
+            }
+        }).toArray();
+        return createTreeNode(integers);
     }
 
     public static void printTreeNode(TreeNode treeNode) {
