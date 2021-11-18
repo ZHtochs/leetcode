@@ -53,6 +53,9 @@ public class TreeNode {
     }
 
     public static TreeNode createTreeNode(String string) {
+        if (string.contains("[")) {
+            string = string.substring(1, string.length() - 1);
+        }
         String[] strings = string.split(",");
         int[] integers = Stream.of(strings).mapToInt(new ToIntFunction<String>() {
             @Override
