@@ -48,11 +48,14 @@
 
 
 package com.huawei.leetcode.editor.cn;
+
+import java.util.LinkedList;
+
 //Java：灯泡开关
 public class P319BulbSwitcher{
     public static void main(String[] args) {
         Solution solution = new P319BulbSwitcher().new Solution();
-        // TO TEST
+        // TO TES
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {

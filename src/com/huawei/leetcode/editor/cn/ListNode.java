@@ -6,14 +6,14 @@ package com.huawei.leetcode.editor.cn;
  * @create: 2021-08-05 21:46
  **/
 public class ListNode {
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
 
-    ListNode(int x) {
+    public ListNode(int x) {
         val = x;
     }
 
-    static ListNode createList(int... ints) {
+    public static ListNode createList(int... ints) {
         ListNode head = new ListNode(ints[0]);
         ListNode temp = head;
         for (int i = 1; i < ints.length; i++) {
@@ -23,14 +23,14 @@ public class ListNode {
         return head;
     }
 
-    static void printListNode(ListNode listNode) {
+    public static void printListNode(ListNode listNode) {
         while (listNode != null) {
             System.out.print(listNode.val + " ");
             listNode = listNode.next;
         }
     }
 
-    static void printInt(int[] ints) {
+    public static void printInt(int[] ints) {
         for (int anInt : ints) {
             System.out.print(" " + anInt);
         }

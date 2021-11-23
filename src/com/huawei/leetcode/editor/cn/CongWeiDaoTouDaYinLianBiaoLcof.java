@@ -18,6 +18,7 @@ package com.huawei.leetcode.editor.cn;
 // 👍 168 👎 0
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CongWeiDaoTouDaYinLianBiaoLcof {
     public static void main(String[] args) {

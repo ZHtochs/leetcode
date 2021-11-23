@@ -21,7 +21,9 @@
 
 package com.huawei.leetcode.editor.cn;
 
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 import java.util.function.BiFunction;
 
 //Java：存在重复元素 II
@@ -31,6 +33,7 @@ public class P219ContainsDuplicateIi {
         System.out.println(solution.containsNearbyDuplicate(new int[]{1, 2, 3, 1}, 3));
         System.out.println(solution.containsNearbyDuplicate(new int[]{1, 0, 1, 1}, 1));
         System.out.println(solution.containsNearbyDuplicate(new int[]{1, 2, 3, 1, 2, 3}, 2));
+        PriorityQueue priorityQueue = new PriorityQueue(3, Comparator.reverseOrder());
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
