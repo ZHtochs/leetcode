@@ -12,11 +12,11 @@ import java.util.stream.Stream;
  * @create: 2021-08-05 22:22
  **/
 public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
 
-    TreeNode(int x) {
+    public TreeNode(int x) {
         val = x;
     }
 

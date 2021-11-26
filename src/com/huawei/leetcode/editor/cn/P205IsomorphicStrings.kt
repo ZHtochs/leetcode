@@ -47,6 +47,7 @@ public class P205IsomorphicStrings {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         fun isIsomorphic(s: String, t: String): Boolean {
+
             if (s.length != t.length) return false
             val chars = s.toCharArray()
             val charsB = t.toCharArray()
