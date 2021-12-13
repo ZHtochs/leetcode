@@ -39,7 +39,9 @@ import java.util.HashMap;
 public class P689MaximumSumOf3NonOverlappingSubarrays {
     public static void main(String[] args) {
         Solution solution = new P689MaximumSumOf3NonOverlappingSubarrays().new Solution();
-        // TO TEST
+        int[] ints = solution.maxSumOfThreeSubarrays(new int[]{1, 2, 1, 2, 6, 7, 5, }, 2);
+        int[] ints2 = solution.maxSumOfThreeSubarrays(new int[]{1, 2, 1, 2, 1, 2, 1, 2, 1}, 2);
+        System.out.println("!23");
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -59,18 +61,37 @@ public class P689MaximumSumOf3NonOverlappingSubarrays {
                 if (j == nums.length) {
                     break;
                 }
-                sum = sum - nums[i] + nums[j];
+                sum = sum - nums[i - 1] + nums[j];
             }
 
             int max = 0;
             int[] result = new int[3];
             for (int start = k; start < nums.length - k - 1; start++) {
-                int temp = hashMap.get(start - k) + hashMap.get(start) + hashMap.get(start + k);
-                if (temp > max) {
-                    result = new int[]{start - k, start, start + k};
+                int[] front = findMax(hashMap, 0, start - k);
+                int[] back = findMax(hashMap, start + k, nums.length - k);
+                if (front[0] + back[0] + hashMap.get(start) > max) {
+                    max = front[0] + back[0] + hashMap.get(start);
+                    result[0] = front[1];
+                    result[1] = start;
+                    result[2] = back[1];
                 }
             }
             return result;
+        }
+
+        private int[] findMax(HashMap<Integer, Integer> hashMap, int start, int end) {
+            int max = 0;
+            int maxi = 0;
+            for (int i = start; i <= end; i++) {
+                if (hashMap.get(i) > max) {
+                    maxi = i;
+                    max = hashMap.get(maxi);
+                }
+            }
+            int[] ints = new int[2];
+            ints[0] = max;
+            ints[1] = maxi;
+            return ints;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

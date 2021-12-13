@@ -1,5 +1,10 @@
 package com.huawei.leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.ToIntFunction;
+import java.util.stream.IntStream;
+
 /**
  * @program: offer
  * @author: zhuhe
@@ -34,5 +39,21 @@ public class ListNode {
         for (int anInt : ints) {
             System.out.print(" " + anInt);
         }
+    }
+
+    // [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]
+    public static int[][] getIntArrays(String s) {
+        String[] strings = s.replace(" ", "").split("],");
+        ArrayList<int[]> arrayList = new ArrayList<>();
+        for (int i = 0; i < strings.length; i++) {
+            String[] strings1 = strings[i].replace("[", "").replace("]", "").split(",");
+            int[] ints = Arrays.stream(strings1).mapToInt(Integer::valueOf).toArray();
+            arrayList.add(ints);
+        }
+        int[][] ints = new int[arrayList.size()][arrayList.get(0).length];
+        for (int i = 0; i < ints.length; i++) {
+            ints[i] = arrayList.get(i);
+        }
+        return ints;
     }
 }
