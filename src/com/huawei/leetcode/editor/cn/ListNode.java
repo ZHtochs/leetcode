@@ -56,4 +56,12 @@ public class ListNode {
         }
         return ints;
     }
+
+    public static char[][] getCharArrays(String... strings) {
+        char[][] chars = new char[strings.length][strings[0].length()];
+        for (int i = 0; i < strings.length; i++) {
+            chars[i] = strings[i].toCharArray();
+        }
+        return chars;
+    }
 }
