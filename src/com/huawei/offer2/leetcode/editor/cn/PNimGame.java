@@ -46,6 +46,7 @@ package com.huawei.offer2.leetcode.editor.cn;
 // 
 // 👍 542 👎 0
 
+import java.lang.ref.WeakReference;
 
 //Java：Nim 游戏
 public class PNimGame{

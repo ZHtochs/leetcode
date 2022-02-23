@@ -41,6 +41,8 @@ import java.util.List;
 
 //Java：找出星型图的中心节点
 public class P1791FindCenterOfStarGraph {
+    private static final int a = 1;
+
     public static void main(String[] args) {
         Solution solution = new P1791FindCenterOfStarGraph().new Solution();
         // TO TEST
@@ -61,6 +63,7 @@ public class P1791FindCenterOfStarGraph {
                 }
             }
             return 0;
+
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

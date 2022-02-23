@@ -61,29 +61,48 @@ public class ErChaShuDeZuiJinGongGongZuXianLcof {
     class Solution {
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
             if (root == null) return null; // 如果树为空，直接返回null
-            if (root == p || root == q) return root; // 如果 p和q中有等于 root的，那么它们的最近公共祖先即为root（一个节点也可以是它自己的祖先）
+            // 如果 p和q中有等于 root的，那么它们的最近公共祖先即为root（一个节点也可以是它自己的祖先）
+            if (root == p || root == q) {
+                return root;
+            }
             TreeNode left = lowestCommonAncestor(root.left, p, q); // 递归遍历左子树，只要在左子树中找到了p或q，则先找到谁就返回谁
             TreeNode right = lowestCommonAncestor(root.right, p, q); // 递归遍历右子树，只要在右子树中找到了p或q，则先找到谁就返回谁
-            if (left == null) return right; // 如果在左子树中 p和 q都找不到，则 p和 q一定都在右子树中，右子树中先遍历到的那个就是最近公共祖先（一个节点也可以是它自己的祖先）
-            else if (right == null)
-                return left; // 否则，如果 left不为空，在左子树中有找到节点（p或q），这时候要再判断一下右子树中的情况，如果在右子树中，p和q都找不到，则 p和q一定都在左子树中，左子树中先遍历到的那个就是最近公共祖先（一个节点也可以是它自己的祖先）
-            else return root; //否则，当 left和 right均不为空时，说明 p、q节点分别在 root异侧, 最近公共祖先即为 root
+            // 如果在左子树中 p和 q都找不到，则 p和 q一定都在右子树中，右子树中先遍历到的那个就是最近公共祖先（一个节点也可以是它自己的祖先）
+            if (left == null) {
+                return right;
+                // 否则，如果 left不为空，在左子树中有找到节点（p或q），这时候要再判断一下右子树中的情况，如果在右子树中，p和q都找不到，则 p和q一定都在左子树中，左子树中先遍历到的那个就是最近公共祖先（一个节点也可以是它自己的祖先）
+            } else if (right == null) {
+                return left;
+                //否则，当 left和 right均不为空时，说明 p、q节点分别在 root异侧, 最近公共祖先即为 root
+            } else {
+                return root;
+            }
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
-//        （1） 如果当前结点 rootroot 等于 NULL，则直接返回 NULL
-//        （2） 如果 rootroot 等于 pp 或者 qq ，那这棵树一定返回 pp 或者 qq
-//        （3） 然后递归左右子树，因为是递归，使用函数后可认为左右子树已经算出结果，用 leftleft 和 rightright 表示
-//        （4） 此时若leftleft为空，那最终结果只要看 rightright；若 rightright 为空，那最终结果只要看 leftleft
-//        （5） 如果 leftleft 和 rightright 都非空，因为只给了 pp 和 qq 两个结点，都非空，说明一边一个，因此 rootroot 是他们的最近公共祖先
-//        （6） 如果 leftleft 和 rightright 都为空，则返回空（其实已经包含在前面的情况中了）
-//
-//        时间复杂度是 O(n)O(n)：每个结点最多遍历一次或用主定理，空间复杂度是 O(n)O(n)：需要系统栈空间
-//
-//        代码
-//
-//        作者：Wilson79
-//        链接：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/c-jing-dian-di-gui-si-lu-fei-chang-hao-li-jie-shi-/
-//        来源：力扣（LeetCode）
-//        著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+    //leetcode submit region end(Prohibit modification and deletion)
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return null;
+        // 如果p,q为根节点，则公共祖先为根节点
+        if (root.val == p.val || root.val == q.val) return root;
+        // 如果p,q在左子树，则公共祖先在左子树查找
+        if (find(root.left, p) && find(root.left, q)) {
+            return lowestCommonAncestor(root.left, p, q);
+        }
+        // 如果p,q在右子树，则公共祖先在右子树查找
+        if (find(root.right, p) && find(root.right, q)) {
+            return lowestCommonAncestor(root.right, p, q);
+        }
+        // 如果p,q分属两侧，则公共祖先为根节点
+        return root;
+    }
+
+    private boolean find(TreeNode root, TreeNode c) {
+        if (root == null) return false;
+        if (root.val == c.val) {
+            return true;
+        }
+
+        return find(root.left, c) || find(root.right, c);
+    }
 }
