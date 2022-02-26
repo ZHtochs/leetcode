@@ -18,6 +18,13 @@ public class ListNode {
         val = x;
     }
 
+    @Override
+    public String toString() {
+        return "ListNode{" +
+                "val=" + val +
+                '}';
+    }
+
     public static ListNode createList(int... ints) {
         ListNode head = new ListNode(ints[0]);
         ListNode temp = head;
