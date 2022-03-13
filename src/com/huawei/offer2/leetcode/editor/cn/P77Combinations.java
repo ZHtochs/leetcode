@@ -36,8 +36,9 @@ package com.huawei.offer2.leetcode.editor.cn;
 // 
 // 👍 833 👎 0
 
-import java.awt.image.AreaAveragingScaleFilter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 //Java：组合
 public class P77Combinations {
@@ -49,37 +50,27 @@ public class P77Combinations {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        LinkedList<List<Integer>> res = new LinkedList<>();
+
+        private int n;
 
         public List<List<Integer>> combine(int n, int k) {
-            ArrayList<Integer> set;
-            set = new ArrayList<>();
-            for (int i = 1; i <= n; i++) {
-                set.add(i);
+            this.n = n;
+            res.clear();
+            backTracking(new LinkedList<>(), k, 1);
+            return res;
+        }
+
+        private void backTracking(LinkedList<Integer> arrayList, int k, int start) {
+            if (arrayList.size() == k) {
+                res.add(new ArrayList<>(arrayList));
+                return;
             }
-            if (k <= 0 || k > n) {
-                return Collections.emptyList();
+            for (int i = start; i <= n; i++) {
+                arrayList.add(i);
+                backTracking(arrayList, k, i + 1);
+                arrayList.removeLast();
             }
-            List<List<Integer>> res = new LinkedList<>();
-            if (k == 1) {
-                for (Integer integer : set) {
-                    res.add(new ArrayList<>(List.of(integer)));
-                }
-                return res;
-            }
-            if (k == n) {
-                ArrayList<Integer> arrayList = new ArrayList<>(set);
-                res.add(arrayList);
-                return res;
-            }
-            List<List<Integer>> former = combine(n - 1, k);
-            List<List<Integer>> former2 = combine(n - 1, k - 1);
-            System.out.println("!23");
-            for (int i = 0; i < former2.size(); i++) {
-                List<Integer> list = former2.get(i);
-                list.add(n);
-                former.add(list);
-            }
-            return former;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
