@@ -92,9 +92,7 @@ public class P216CombinationSumIii {
             }
             for (int i = start; i < 10; i++) {
                 list.add(i);
-                n = n - i;
-                backTracking(list, i + 1, n);
-                n = n + i;
+                backTracking(list, i + 1, n - i);
                 list.removeLast();
             }
         }
