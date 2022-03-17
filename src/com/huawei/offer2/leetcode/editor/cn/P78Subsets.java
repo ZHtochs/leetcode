@@ -32,42 +32,64 @@ package com.huawei.offer2.leetcode.editor.cn;
 // 👍 1496 👎 0
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 //Java：子集
 public class P78Subsets {
     public static void main(String[] args) {
         Solution solution = new P78Subsets().new Solution();
-        System.out.println(solution.subsets(new int[]{3,9}));
+        System.out.println(solution.subsets(new int[]{1, 2, 3}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+//        public List<List<Integer>> subsets(int[] nums) {
+//            List<List<Integer>> dfs = dfs(nums, nums.length);
+//            dfs.add(new ArrayList<>());
+//            return dfs;
+//        }
+//
+//        private List<List<Integer>> dfs(int[] nums, int i) {
+//            if (i == 1) {
+//                List<List<Integer>> res = new ArrayList<>();
+//                List<Integer> list = new ArrayList<>(List.of(nums[0]));
+//                res.add(list);
+//                return res;
+//            }
+//            List<List<Integer>> dfs = dfs(nums, i - 1);
+//            int size = dfs.size();
+//            for (int j = 0; j < size; j++) {
+//                List<Integer> list = new ArrayList<>(dfs.get(j));
+//                list.add(nums[i - 1]);
+//                dfs.add(list);
+//            }
+//            dfs.add(new ArrayList<>(List.of(nums[i - 1])));
+//            return dfs;
+//
+//        }
+
+        private List<List<Integer>> result = new ArrayList<>();
+        //
+        private int[] nums;
+        //
         public List<List<Integer>> subsets(int[] nums) {
-            List<List<Integer>> dfs = dfs(nums, nums.length);
-            dfs.add(new ArrayList<>());
-            return dfs;
+            result.clear();
+            this.nums = nums;
+            backTracking(new LinkedList<>(), 0);
+            return result;
         }
-
-        private List<List<Integer>> dfs(int[] nums, int i) {
-            if (i == 1) {
-                List<List<Integer>> res = new ArrayList<>();
-                List<Integer> list = new ArrayList<>(List.of(nums[0]));
-                res.add(list);
-                return res;
+//
+        private void backTracking(LinkedList<Integer> es, int i) {
+            result.add(new ArrayList<>(es));
+            if (i == nums.length) {
+                return;
             }
-            List<List<Integer>> dfs = dfs(nums, i - 1);
-            int size = dfs.size();
-            for (int j = 0; j < size; j++) {
-                List<Integer> list = new ArrayList<>(dfs.get(j));
-                list.add(nums[i - 1]);
-                dfs.add(list);
+            for (int j = i; j < nums.length; j++) {
+                es.add(nums[j]);
+                backTracking(es, j + 1);
+                es.removeLast();
             }
-            dfs.add(new ArrayList<>(List.of(nums[i - 1])));
-            return dfs;
-
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
