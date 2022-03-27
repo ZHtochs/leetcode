@@ -43,36 +43,40 @@ import java.util.List;
 public class P46Permutations {
     public static void main(String[] args) {
         Solution solution = new P46Permutations().new Solution();
-        // TO TEST
+        List<List<Integer>> permute = solution.permute(new int[]{1, 2, 3});
+        System.out.println(permute);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         private List<List<Integer>> lists = new LinkedList<>();
-
-        private boolean[] booleans;
+        private LinkedList<Integer> linkedList = new LinkedList<>();
+        private boolean[] used;
+        private int[] nums;
 
         public List<List<Integer>> permute(int[] nums) {
-            LinkedList<Integer> linkedList = new LinkedList<>();
-            booleans = new boolean[nums.length];
-            permute(nums, linkedList);
+            linkedList.clear();
+            lists.clear();
+            used = new boolean[nums.length];
+            this.nums = nums;
+            permute();
             return lists;
         }
 
-        public void permute(int[] nums, LinkedList<Integer> list) {
-            if (list.size() == nums.length) {
-                lists.add(new LinkedList<>(list));
+        public void permute() {
+            if (linkedList.size() == nums.length) {
+                lists.add(new LinkedList<>(linkedList));
                 return;
             }
             for (int i = 0; i < nums.length; i++) {
-                if (!booleans[i]) {
-                    booleans[i] = true;
-                    list.add(nums[i]);
-                    permute(nums, list);
-                    booleans[i] = false;
-                    list.removeLast();
+                if (used[i]) {
+                    continue;
                 }
-
+                used[i] = true;
+                linkedList.add(nums[i]);
+                permute();
+                linkedList.removeLast();
+                used[i] = false;
             }
         }
     }
